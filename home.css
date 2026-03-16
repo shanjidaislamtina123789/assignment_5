@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background: #f4f6f8;
+    font-family: "Geist", sans-serif;
+    font-optical-sizing: auto;
+    margin: 0;
+    padding: 0;
+  }
+  .navbar {
+    background: #fff;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    
+  }
+  
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .brand img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .brand h1 {
+    color: #333;
+    font-size: 20px;
+  }
+  
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+   
+  }
+  
+  .nav-actions input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: url("../assets/search.png") no-repeat 8px center;
+    background-size: 16px;
+    padding-left: 30px;
+  }
+  ::placeholder{
+    color:#4A00FF;
+  }
+  
+  .new-issue {
+    background: #4A00FF;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+ 
+  .tabs {
+    margin-top: 80px; 
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .tab {
+    padding: 8px 15px;
+    border: none;
+    background: #ddd;
+    cursor: pointer;
+    border-radius: 5px;
+  
+  }
+  
+  .tab:hover {
+    background: #bbb;
+  }
+  
+  .tab.active {
+    background: #2c974b;
+    color: white;
+  }
+  
+  .issues {
+    width: 80%;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* responsive grid */
+    gap: 20px;
+  }
+
+  .issue-card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+  
+  .issue-card h3 {
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .issue-card p {
+    margin-bottom: 8px;
+    color: #555;
+  }
+  
+  .issue-card small {
+    color: #777;
+  }
+  
+  .priority {
+    display: inline-block;
+    margin-bottom: 8px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  .priority.high { background: red; color: white; }
+  .priority.medium { background: orange; color: white; }
+  .priority.low { background: green; color: white; }
+  
+  
