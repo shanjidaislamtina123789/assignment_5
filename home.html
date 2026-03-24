@@ -1,56 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home-page</title>
-    <link rel="stylesheet" href="home.css">
-    
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub Issues Tracker</title>
+<link rel="stylesheet" href="home.css">
 </head>
+
 <body>
-  
-    <nav class="navbar">
-      <div class="brand">
-        <img src="./assets/github-logo.png" alt="GitHub Logo">
-        <h1>GitHub Issues Tracker</h1>
-      </div>
-      <div class="nav-actions">
-         
-        <input type="text" placeholder="Search issues...">
 
-        <button class="new-issue">+ New Issue</button>
-      </div>
-    </nav>
-  
+<nav class="navbar">
 
-    <div class="tabs">
-      <button class="tab active" data-tab="all">All</button>
-      <button class="tab" data-tab="open">Open</button>
-      <button class="tab" data-tab="closed">Closed</button>
+<div class="brand">
+<img src="./assets/github-logo.png">
+<h1>GitHub Issues Tracker</h1>
+</div>
+
+<div class="nav-actions">
+<input id="searchInput" type="text" placeholder="Search issues...">
+<button class="new-issue">+ New Issue</button>
+</div>
+
+</nav>
+
+
+
+<div class="tabs">
+
+<button class="tab active" onclick="changeTab(event,'all')">All</button>
+<button class="tab" onclick="changeTab(event,'open')">Open</button>
+<button class="tab" onclick="changeTab(event,'closed')">Closed</button>
+
+</div>
+
+
+<div class="issue-header">
+
+    <div class="issue-info">
+      <img src="./assets/Aperture.png" alt="Project Icon">
+      <div class="issue-text">
+        <span><b><span id="issueCount">0</span> Issues</b></span>
+        <p>Track and manage your project issues</p>
+      </div>
     </div>
   
+    <div class="marker">
+      <span class="green-dot"></span> Open
+      <span class="purple-dot"></span> Closed
+    </div>
+  
+  </div>
 
-    <div class="issues">
-      <div class="issue-card open">
-        <span class="priority high">HIGH</span>
-        <h3>Fix Navigation Menu On Mobile Devices</h3>
-        <p>Menu overlaps on small screens.</p>
-        <small>Author: John | Date: 2026-03-09</small>
-      </div>
-  
-      <div class="issue-card closed">
-        <span class="priority medium">MEDIUM</span>
-        <h3>Update README with Installation Steps</h3>
-        <p>README missing setup instructions.</p>
-        <small>Author: Sarah | Date: 2026-03-08</small>
-      </div>
-  
-      <div class="issue-card open">
-        <span class="priority low">LOW</span>
-        <h3>Add Dark Mode Option</h3>
-        <p>Users requested dark mode.</p>
-        <small>Author: Alex | Date: 2026-03-07</small>
+
+
+<div id="loader" class="loader hidden"></div>
+
+
+
+<div id="issueContainer" class="grid"></div>
+
+
+
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 id="modalTitle">Fix broken image uploads</h2>
+      <div class="modal-meta">
+        <span id="modalStatusBadge" class="status-badge">Opened</span>
+        <span class="meta-text">Opened by <b id="modalAuthor">Fahim Ahmed</b> • <span id="modalDate">22/02/2026</span></span>
       </div>
     </div>
-  </body>
+
+    <div id="modalTagSection" class="tag-section">
+      </div>
+
+    <p id="modalDescription" class="modal-desc"></p>
+
+    <div class="modal-info-grid">
+      <div class="info-item">
+        <label>Assignee:</label>
+        <span id="modalAssignee"></span>
+      </div>
+      <div class="info-item">
+        <label>Priority:</label>
+        <span id="modalPriorityBadge" class="priority-badge">HIGH</span>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="close-btn" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
 </html>

@@ -8,7 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: "Geist", sans-serif;
+    font-family: "Geist",sans-serif;
    
   
   }  
@@ -44,8 +44,8 @@
     align-self: center;  
    
   }
-  form {
-    display: flex;
+  form{
+    display:flex;
     flex-direction: column;
     gap: 15px;
   }
