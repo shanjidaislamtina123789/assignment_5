@@ -20,6 +20,7 @@ const add=(a,b)=>a+b;
 
 5. What are template literals?
 Ans:-> Strings with backticks(`).
+
        const name="Shanjida";
        console.log(`Hello,${name}!`);
 
