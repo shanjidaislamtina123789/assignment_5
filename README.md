@@ -15,7 +15,7 @@ Ans;>
  forEach() : return nothing, just loops for side effects (like logging)
 
 4. What is an arrow function?
-Ans;> Arrow function : Short syntax for functions.
+Ans:> Arrow function : Short syntax for functions.
 const add=(a,b)=>a+b;
 
 5. What are template literals?
