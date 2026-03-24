@@ -8,6 +8,7 @@ Ans:->Spread operator:Expand arrays/objects into individual elements.
 Example:
 
 const arr=[1,2,3];
+
 const newArr=[...arr, 4];//[1,2,3,4]
 
 3. What is the difference between map(),filter(),and forEach()?
@@ -23,6 +24,7 @@ const add=(a,b)=>a+b;
 5. What are template literals?
 Ans:-> Strings with backticks(`).
 Example:
+
        const name="Shanjida";
        console.log(`Hello,${name}!`);
 
