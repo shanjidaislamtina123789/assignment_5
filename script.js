@@ -55,7 +55,7 @@ function generateTagsHTML(labels){
         }
         if(text&&!uniqueTags.has(text)){
             uniqueTags.set(text, 
-                '<div class="custom-tag'+tagClass+'">'+
+                '<div class="custom-tag '+tagClass+'">'+
                   (imgSrc?'<img src="'+imgSrc+'"alt="' + text + '">':'')+
                   '<span>'+text+'</span>'+
                 '</div>'
@@ -64,37 +64,41 @@ function generateTagsHTML(labels){
     });
     return Array.from(uniqueTags.values()).join('');
 }
-function displayIssues(issues){
+function displayIssues(issues,currentTab="all") {
     const container=document.getElementById("issueContainer");
-    container.innerHTML="";
-    document.getElementById("issueCount").innerText=issues.length;
+    container.innerHTML = "";
+    document.getElementById("issueCount").innerText = issues.length;
 
     issues.forEach(issue=>{
         const div=document.createElement("div");
-        div.className='issue-card '+issue.status.toLowerCase();
-        let statusImg=(issue.priority?.toLowerCase()==='low')?'check.png':'Open-Status.png';
-
+        let cardClass='issue-card';
+        
+        if(currentTab==="all"){
+            cardClass += ' ' + issue.priority.toLowerCase(); 
+        }else{
+           
+            cardClass += ' ' + currentTab.toLowerCase(); 
+        }
+        div.className=cardClass;
+        let statusImg=(issue.priority?.toLowerCase() === 'low') ? 'check.png' : 'Open-Status.png';
         const tagsHTML=generateTagsHTML(issue.labels);
 
-        div.innerHTML= 
-        '<div class="card-header">'+
-            '<img src="./assets/'+statusImg+'"class="status-icon">' +
-            '<span class="priority-badge'+issue.priority?.toLowerCase()+'">'+issue.priority+'</span>'+
-        '</div>' +
-
-        '<div class="issue-main">'+
-            '<h3>'+issue.title+'</h3>'+
-            '<p>'+issue.description+'</p>'+
-        '</div>'+
-        '<div class="tag-section">'+
-          tagsHTML+
-        '</div>'+
-        '<div class="issue-footer">'+
-          '<div class="user-info">'+
-             '<span>#'+issue.id+'by'+issue.author+'</span>'+
-          '</div>'+
-          '<small>'+ new Date(issue.createdAt).toLocaleDateString()+'</small>'+
-        '</div>';
+        div.innerHTML = `
+        <div class="card-header">
+            <img src="./assets/${statusImg}" class="status-icon">
+            <span class="priority-badge ${issue.priority?.toLowerCase()}">${issue.priority}</span>
+        </div>
+        <div class="issue-main">
+            <h3>${issue.title}</h3>
+            <p>${issue.description}</p>
+        </div>
+        <div class="tag-section">${tagsHTML}</div>
+        <div class="issue-footer">
+          <div class="user-info">
+             <span>#${issue.id} by ${issue.author}</span>
+          </div>
+          <small>${new Date(issue.createdAt).toLocaleDateString()}</small>
+        </div>`;
 
         div.onclick=()=>openModal(issue);
         container.appendChild(div);
@@ -102,14 +106,14 @@ function displayIssues(issues){
 }
 function changeTab(e,type){
     const tabs=document.querySelectorAll(".tab");
-    tabs.forEach(t=>t.classList.remove("active"));
+    tabs.forEach(t => t.classList.remove("active"));
     e.target.classList.add("active");
 
     if(type==="all"){
-        displayIssues(allIssues);
+        displayIssues(allIssues,"all"); 
     }else{
-        const filter=allIssues.filter(i=>i.status.toLowerCase()===type.toLowerCase());
-        displayIssues(filter);
+        const filter=allIssues.filter(i => i.status.toLowerCase()===type.toLowerCase());
+        displayIssues(filter,type);
     }
 }
 document.getElementById("searchInput").addEventListener("keypress",function(e){
@@ -159,7 +163,7 @@ function openModal(issue){
     }
     const priorityBadge=document.getElementById("modalPriorityBadge");
     priorityBadge.innerText=issue.priority.toUpperCase();
-    priorityBadge.className='priority-badge'+issue.priority.toLowerCase();
+    priorityBadge.className='priority-badge '+issue.priority.toLowerCase();
 
     const modalTagSection=document.getElementById("modalTagSection");
     modalTagSection.innerHTML=generateTagsHTML(issue.labels);
